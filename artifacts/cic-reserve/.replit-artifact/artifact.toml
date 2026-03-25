@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "CIC Reserve Landing Page"
+version = "1.0.0"
+id = "artifacts/cic-reserve"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21849
+
+[services.development]
+run = "pnpm --filter @workspace/cic-reserve run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/cic-reserve", "run", "build" ]
+publicDir = "artifacts/cic-reserve/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21849"
+BASE_PATH = "/"
