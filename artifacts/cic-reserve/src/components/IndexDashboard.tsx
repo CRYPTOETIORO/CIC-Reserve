@@ -120,7 +120,7 @@ export default function IndexDashboard() {
               <DonutChart assets={assets} inView={inView} />
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <img
-                  src="https://i.imgur.com/yjs0Jf3.png"
+                  src="https://i.imgur.com/aWWHkV1.png"
                   alt="CIC Logo"
                   className="w-10 h-10 sm:w-12 sm:h-12 object-contain mb-1"
                 />

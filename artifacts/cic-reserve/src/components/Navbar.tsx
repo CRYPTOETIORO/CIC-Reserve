@@ -37,7 +37,7 @@ export default function Navbar() {
           {/* Logo + Brand */}
           <a href="#" className="flex items-center gap-2.5 group flex-shrink-0">
             <img
-              src="https://i.imgur.com/yjs0Jf3.png"
+              src="https://i.imgur.com/aWWHkV1.png"
               alt="CIC Logo"
               className="w-8 h-8 object-contain rounded-sm"
             />

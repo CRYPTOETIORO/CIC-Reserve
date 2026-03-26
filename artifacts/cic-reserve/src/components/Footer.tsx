@@ -18,7 +18,7 @@ export default function Footer() {
             className="flex items-center gap-3"
           >
             <img
-              src="https://i.imgur.com/yjs0Jf3.png"
+              src="https://i.imgur.com/aWWHkV1.png"
               alt="CIC Logo"
               className="w-8 h-8 object-contain rounded-sm opacity-80"
             />
