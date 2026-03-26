@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useLocation, Link } from "wouter";
 import { useLang } from "@/context/LangContext";
 
 export default function Navbar() {
   const { lang, setLang, t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [location] = useLocation();
+  const isToken = location === "/token";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -14,7 +17,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = [
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location]);
+
+  const homeLinks = [
     { label: t.nav.index, href: "#index" },
     { label: t.nav.scarcity, href: "#scarcity" },
     { label: t.nav.whitepaper, href: "#whitepaper" },
@@ -29,13 +37,13 @@ export default function Navbar() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[#050505]/90 backdrop-blur-xl border-b border-[#C4A77D]/10"
+            ? "bg-[#050505]/92 backdrop-blur-xl border-b border-[#C4A77D]/10"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           {/* Logo + Brand */}
-          <a href="#" className="flex items-center gap-2.5 group flex-shrink-0">
+          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
             <img
               src="https://i.imgur.com/aWWHkV1.png"
               alt="CIC Logo"
@@ -49,11 +57,12 @@ export default function Navbar() {
                 CIC Reserve
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {links.map((link) => (
+          <div className="hidden md:flex items-center gap-5 lg:gap-7">
+            {/* Home anchor links — only show on home page */}
+            {!isToken && homeLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -63,6 +72,27 @@ export default function Navbar() {
                 <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#C4A77D] group-hover:w-full transition-all duration-300" />
               </a>
             ))}
+
+            {/* Roadmap link — always visible, anchors home */}
+            {isToken && (
+              <Link href="/"
+                className="text-[#A0A0A0] hover:text-[#F0F0F0] text-xs tracking-wider uppercase transition-colors duration-300 relative group whitespace-nowrap">
+                Home
+                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#C4A77D] group-hover:w-full transition-all duration-300" />
+              </Link>
+            )}
+
+            {/* $CIC Token page link */}
+            <Link href="/token"
+              className={`text-xs tracking-wider uppercase transition-colors duration-300 relative group whitespace-nowrap font-semibold ${
+                isToken
+                  ? "text-[#C4A77D]"
+                  : "text-[#A0A0A0] hover:text-[#C4A77D]"
+              }`}
+            >
+              $CIC
+              <span className={`absolute -bottom-0.5 left-0 h-px bg-[#C4A77D] transition-all duration-300 ${isToken ? "w-full" : "w-0 group-hover:w-full"}`} />
+            </Link>
           </div>
 
           {/* Right side */}
@@ -114,16 +144,30 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="fixed top-16 left-0 right-0 z-40 bg-[#080808]/97 backdrop-blur-xl border-b border-[#C4A77D]/10 pb-4"
           >
-            {links.map((link) => (
+            {!isToken && homeLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block px-6 py-3.5 text-[#A0A0A0] hover:text-[#C4A77D] text-sm tracking-wider uppercase transition-colors border-b border-[#111] last:border-0"
+                className="block px-6 py-3.5 text-[#A0A0A0] hover:text-[#C4A77D] text-sm tracking-wider uppercase transition-colors border-b border-[#111]"
               >
                 {link.label}
               </a>
             ))}
+            {isToken && (
+              <Link href="/"
+                onClick={() => setMobileOpen(false)}
+                className="block px-6 py-3.5 text-[#A0A0A0] hover:text-[#C4A77D] text-sm tracking-wider uppercase transition-colors border-b border-[#111]">
+                Home
+              </Link>
+            )}
+            <Link href="/token"
+              onClick={() => setMobileOpen(false)}
+              className={`block px-6 py-3.5 text-sm tracking-wider uppercase transition-colors font-semibold ${
+                isToken ? "text-[#C4A77D]" : "text-[#A0A0A0] hover:text-[#C4A77D]"
+              }`}>
+              $CIC Token
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
