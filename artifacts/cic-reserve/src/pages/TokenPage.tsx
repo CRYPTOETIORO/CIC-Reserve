@@ -53,7 +53,7 @@ function TokenHero() {
   };
 
   return (
-    <section className="relative min-h-[80vh] sm:min-h-[85vh] flex flex-col items-center justify-center overflow-hidden bg-[#050505] pt-16">
+    <section className="relative min-h-[100svh] sm:min-h-[85vh] flex flex-col items-center justify-center overflow-hidden bg-[#050505] pt-16 pb-8 sm:pb-0">
       <div className="absolute inset-0 bg-grid opacity-100" />
       <div className="absolute inset-0 radial-glow" />
 
@@ -179,9 +179,9 @@ function Tokenomics() {
                 <div className="w-8 h-8 border border-[#C4A77D]/20 rounded-sm flex items-center justify-center mb-3">
                   <s.icon size={14} color="#C4A77D" />
                 </div>
-                <div className="text-[#C4A77D] font-bold text-base sm:text-lg leading-tight">
+                <div className="text-[#C4A77D] font-bold text-sm sm:text-base leading-tight break-words">
                   {s.value}
-                  {s.suffix && <span className="text-xs ml-1 text-[#C4A77D]/70">{s.suffix}</span>}
+                  {s.suffix && <span className="text-[10px] ml-1 text-[#C4A77D]/70">{s.suffix}</span>}
                 </div>
                 <div className="text-[#505050] text-[10px] sm:text-xs tracking-wider uppercase mt-0.5">{s.label}</div>
               </motion.div>
@@ -212,7 +212,7 @@ function Tokenomics() {
               animate={inView ? "visible" : "hidden"}
               className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: d.color }} />
-              <span className="text-[#A0A0A0] text-xs sm:text-sm w-32 flex-shrink-0">{d.label}</span>
+              <span className="text-[#A0A0A0] text-xs w-20 sm:w-28 flex-shrink-0">{d.label}</span>
               <div className="flex-1 h-1.5 bg-[#111] rounded-full overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
