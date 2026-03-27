@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Copy, CheckCheck } from "lucide-react";
+import { Copy, CheckCheck, Zap } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { Link } from "wouter";
 
@@ -108,6 +108,10 @@ export default function Footer() {
               </a>
               <Link href="/token" className="text-[#C4A77D]/60 text-xs tracking-widest hover:text-[#C4A77D] transition-colors uppercase font-semibold">
                 $CIC
+              </Link>
+              <Link href="/presale" className="flex items-center gap-1.5 text-amber-500/70 text-xs tracking-widest hover:text-amber-400 transition-colors uppercase font-bold">
+                <Zap size={10} />
+                Pre-sale
               </Link>
               <a
                 href="https://cicreserve.xyz"

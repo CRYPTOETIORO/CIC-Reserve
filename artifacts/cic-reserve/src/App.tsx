@@ -4,12 +4,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HomePage from "@/pages/HomePage";
 import TokenPage from "@/pages/TokenPage";
+import PresalePage from "@/pages/PresalePage";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
       <Route path="/token" component={TokenPage} />
+      <Route path="/presale" component={PresalePage} />
     </Switch>
   );
 }
