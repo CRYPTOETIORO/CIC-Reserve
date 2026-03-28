@@ -22,8 +22,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Aquí apuntamos a la carpeta que ya tiene tu web lista
-          path: './artifacts'
+          # Si tu index.html está dentro de una carpeta llamada 'dist'
+          path: './artifacts/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
