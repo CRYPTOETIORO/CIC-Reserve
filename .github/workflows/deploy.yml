@@ -22,12 +22,10 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
+      - name: Install and Build
         run: |
           cd artifacts
+          pnpm install
           pnpm run build
 
       - name: Upload artifact
