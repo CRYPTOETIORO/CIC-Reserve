@@ -22,8 +22,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Si tu index.html está dentro de una carpeta llamada 'dist'
-          path: './artifacts/dist'
+          # Probamos la carpeta raíz de artifacts
+          path: './artifacts'
 
       - name: Deploy to GitHub Pages
         id: deployment
