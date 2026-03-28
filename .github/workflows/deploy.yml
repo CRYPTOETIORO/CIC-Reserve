@@ -22,8 +22,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Esta es la ruta exacta donde GitHub buscará tu index.html
-          path: './artifacts/cic-reserve/dist'
+          # Probamos con la carpeta raíz del proyecto para ver qué hay
+          path: './artifacts/cic-reserve'
 
       - name: Deploy to GitHub Pages
         id: deployment
